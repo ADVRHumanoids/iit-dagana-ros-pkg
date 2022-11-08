@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+<xacro:macro name="dagana_gripper" params="name joint_type parent_link *origin">
+
+    <xacro:property name="mmTom" value="1e-3" />
+    <xacro:property name="mm2Tom2" value="1e-6" />
+    <xacro:property name="PI_2" value="1.57079632679" />
+    <xacro:property name="PI" value="3.14159265359" />
+
+
+    <joint name="${name}_mount_joint" type="fixed">
+        <xacro:insert_block name="origin"/>
+        <parent link="${parent_link}"/>
+        <child link="${name}_top_link"/>
+    </joint>
+
+
+    <link name="${name}_top_link">
+        <inertial>
+            <origin xyz="${-6.3562154e+00*mmTom} ${-6.0265532e+00*mmTom}  ${6.0068288e+01*mmTom}" rpy="0 0 0"/>
+            <mass value="1.7432400"/>
+            <inertia ixx="${5.0510328e+03*mm2Tom2}" 
+                     ixy="${-2.5264216e+02*mm2Tom2}" 
+                     ixz="${-1.2103013e+02*mm2Tom2}" 
+                     iyy="${4.7944612e+03*mm2Tom2}" 
+                     iyz="${-7.3917704e+02*mm2Tom2}" 
+                     izz="${3.1156997e+03*mm2Tom2}" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dagana_urdf/meshes/dg0001-simplified.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+            </geometry>
+            <material name="dark_grey"/>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dagana_urdf/meshes/dg0001-ch.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+            </geometry>
+            <material name="dark_grey"/>
+        </collision>
+    </link>
+
+
+    <joint name="${name}_claw_joint" type="${joint_type}">
+        <origin xyz="${0.0*mmTom} ${-28.00*mmTom} ${50.25*mmTom}" rpy="${PI_2} 0 ${PI}"/>
+        <parent link="${name}_top_link"/>
+        <child link="${name}_bottom_link"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+
+    <link name="${name}_bottom_link">
+        <inertial>
+            <origin xyz="${6.9644767e+01*mmTom} ${2.6548329e+00*mmTom} ${-4.1960263e+01*mmTom}" rpy="0 0 0"/>
+            <mass value="4.6117745e-01"/>
+            <inertia ixx="${9.3855569e+02*mm2Tom2}" 
+                     ixy="${-2.6445200e+02*mm2Tom2}" 
+                     ixz="${7.1346830e+01*mm2Tom2}" 
+                     iyy="${1.9472731e+03*mm2Tom2}" 
+                     iyz="${2.5290650e+00*mm2Tom2}" 
+                     izz="${1.4726991e+03*mm2Tom2}" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dagana_urdf/meshes/dg0002.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+            </geometry>
+            <material name="dark_grey"/>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dagana_urdf/meshes/dg0002-ch.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+            </geometry>
+            <material name="dark_grey"/>
+        </collision>
+    </link>
+
+    
+
+</xacro:macro>
+
+</robot>
