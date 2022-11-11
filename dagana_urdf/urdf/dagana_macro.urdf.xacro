@@ -50,7 +50,8 @@
         <origin xyz="${0.0*mmTom} ${-28.00*mmTom} ${50.25*mmTom}" rpy="${PI_2} 0 ${PI}"/>
         <parent link="${name}_top_link"/>
         <child link="${name}_bottom_link"/>
-        <axis xyz="0 0 1"/>
+        <axis xyz="-1 0 0"/>
+        <limit effort="1000" lower="0" upper="1" velocity="2.0"/>
     </joint>
 
 
