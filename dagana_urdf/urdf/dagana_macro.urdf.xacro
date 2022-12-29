@@ -83,8 +83,16 @@
             <material name="dark_grey"/>
         </collision>
     </link>
-
     
+    
+    <!-- Manually put to have a transform in a "good" grasping spot-->
+    <joint name="${name}_tcp_joint" type="fixed">
+        <origin xyz="0 -0.05 0.15" rpy="0 0 0"/>
+        <parent link="${name}_top_link"/>
+        <child link="${name}_tcp"/>
+    </joint>
+
+    <link name="${name}_tcp"></link>  
 
 </xacro:macro>
 
