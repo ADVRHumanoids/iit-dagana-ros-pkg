@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="dagana">
+
+<xacro:include filename="$(find dagana_urdf)/urdf/dagana_macro.urdf.xacro" />
+
+<material name="dark_grey">
+	<color rgba="0.2 0.2 0.2 1"/>
+</material>
+
+<link name="world"/>
+<joint name="virtualFixed" type="fixed">
+	<parent link="world"/>
+	<child link="dagana_gripper_base"/>
+</joint>
+<link name="dagana_gripper_base"/>
+
+<xacro:dagana_gripper name="dagana_gripper" parent_link="dagana_gripper_base" joint_type="revolute">
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+</xacro:dagana_gripper>
+
+</robot>
