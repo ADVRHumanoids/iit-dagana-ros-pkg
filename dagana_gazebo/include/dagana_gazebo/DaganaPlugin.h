@@ -57,14 +57,6 @@ namespace gazebo
         ros::Subscriber joint_command_sub;
         void jointCommandClbk ( const sensor_msgs::JointStateConstPtr &msg );
         sensor_msgs::JointState jointCommandMsg;
-        bool command_arrived = false;
- 
-        //NOTE hardcoded stuff
-
-
-        
-
-        
         
   };
 

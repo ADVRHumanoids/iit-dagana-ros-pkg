@@ -27,8 +27,4 @@ But in simulation is not so compliant with xbot2, so we need some hack. And in r
     [...]
   ```
 
-- Not sure if necessary, but I put on the cartesio launch file:
-```xml
-  <param name="cartesian/joint_blacklist" type="yaml" 
-    value="[dagana_2_claw_joint]"/>
-```
+- On all urdf (cartesio, xbot) put dagana_fixed. dagana not fixed only to the urdf for gazebo

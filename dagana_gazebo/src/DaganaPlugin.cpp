@@ -58,10 +58,12 @@ void gazebo::DaganaPlugin::Load(physics::ModelPtr model, sdf::ElementPtr sdf) {
     joint_command_sub = nh->subscribe(so);
     
     joint_state_pub = nh->advertise<sensor_msgs::JointState>("/xbotcore/gripper/" + gripper_name + "/state", 10);
-
-    this->rosQueueThread = std::thread(std::bind(&DaganaPlugin::QueueThread, this, rate));
     
     scopedJointName = model->GetName() + "::" + joint_name; //necessary for Set of gazebo
+    if (! model->GetJoint(scopedJointName)) {
+        ROS_ERROR("DAGANA PLUGIN ERROR: '%s' joint not found\n", scopedJointName.c_str());
+        return;
+    }
     pos_ref_interpolated = model->GetJoint(scopedJointName)->Position(0);
     
     //init message
@@ -70,11 +72,13 @@ void gazebo::DaganaPlugin::Load(physics::ModelPtr model, sdf::ElementPtr sdf) {
     jointStateMsg.velocity.push_back(model->GetJoint(scopedJointName)->GetVelocity(0));
     jointStateMsg.effort.push_back(model->GetJoint(scopedJointName)->GetForce(0));
     
+    jointCommandMsg = jointStateMsg;
+    
     pos_min = model->GetJoint(scopedJointName)->LowerLimit(0);
     pos_max = model->GetJoint(scopedJointName)->UpperLimit(0);
     vel_max = model->GetJoint(scopedJointName)->GetVelocityLimit(0);
     
-    
+    this->rosQueueThread = std::thread(std::bind(&DaganaPlugin::QueueThread, this, rate));
 }
 
 void gazebo::DaganaPlugin::QueueThread(double rate) {
@@ -86,11 +90,8 @@ void gazebo::DaganaPlugin::QueueThread(double rate) {
         // see if some messages for subs have arrived
         this->rosQueue.callAvailable(ros::WallDuration());        
 
-        if (command_arrived)
-        {
-            setReference();
-            command_arrived = false;
-        }
+        setReference();
+
         r.sleep();
     }
 }
@@ -138,5 +139,4 @@ bool gazebo::DaganaPlugin::setReference (  )
 void gazebo::DaganaPlugin::jointCommandClbk ( const sensor_msgs::JointStateConstPtr &msg ) {
     
     jointCommandMsg = *msg;
-    command_arrived = true;
 }
