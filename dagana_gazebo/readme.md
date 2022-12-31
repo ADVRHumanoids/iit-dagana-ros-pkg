@@ -78,7 +78,7 @@ Other trial is to add the implicit_spring_damper, and provide the feedback to re
   </gazebo>
   ```
 
--Directly in the sdf (gazebo world loaded)  
+- Directly in the sdf (gazebo world loaded)  
   ```xml
   <joint name='dagana_2_claw_joint' type='revolute'>
     [...]
