@@ -32,6 +32,7 @@ namespace gazebo
     private:
         
         physics::ModelPtr model;
+        sdf::ElementPtr sdf;
         
         std::string scopedJointName;
         double pos_min;
@@ -40,6 +41,7 @@ namespace gazebo
         std::string gripper_name;
         std::string joint_name;
         double rate;
+        double p, i, d, cmdMax, cmdMin;
         
         std::unique_ptr<ros::NodeHandle> nh;
         ros::CallbackQueue rosQueue;
@@ -58,6 +60,7 @@ namespace gazebo
         void jointCommandClbk ( const sensor_msgs::JointStateConstPtr &msg );
         sensor_msgs::JointState jointCommandMsg;
         
+        bool getSdfElements();
   };
 
   // Tell Gazebo about this plugin, so that Gazebo can call Load on this plugin.
