@@ -13,6 +13,11 @@ Command and state of the gripper are available on the same topic as real robot: 
 But in simulation is not so compliant with xbot2, so we need some hack. And in rviz it does not move
 
 ### Istructions:
+
+- On all urdf (cartesio, xbot) put dagana_fixed. dagana not fixed only to the urdf for gazebo
+
+#### Note: if using centauro, gazebo plugin handling is done automatically when generating the model with dagana (after commit https://github.com/ADVRHumanoids/iit-centauro-ros-pkg/pull/37/commits/9d3ac95208e58ee8cfbe95cf31efe1808ddcf66b)
+
 - put plugin in urdf:
   ```xml
   <gazebo>
@@ -39,9 +44,6 @@ But in simulation is not so compliant with xbot2, so we need some hack. And in r
     <pid>
     [...]
   ```
-
-- On all urdf (cartesio, xbot) put dagana_fixed. dagana not fixed only to the urdf for gazebo
-
 
 ### Troubleshoots
 
