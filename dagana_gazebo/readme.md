@@ -22,16 +22,6 @@ But in simulation is not so compliant with xbot2, so we need some hack. And in r
   <xacro:arg name="end_effector_right" default="ball"/> <!-- none, ball, dagana_fixed, dagana -->
   ```  
   You can also set it from command line, check ROS docs
-  
-- After generating the models, you still need to modify one of them manually. You have to tell xbot to ignore the gripper joint. So in the urdf for xbot, put add the `<ignore_joints>` tag like this:
-  ```xml
-  <plugin filename="libxbot2_gz_joint_server.so" name="xbot2_joint_driver">
-    <ignore_joints>
-      <joint name="dagana_2_claw_joint" />
-    </ignore_joints> 
-    <pid>
-    [...]
-  ```
 
 ### Troubleshoots
 
