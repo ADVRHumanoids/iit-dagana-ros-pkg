@@ -14,6 +14,8 @@ But in simulation is not so compliant with xbot2, so we need some hack. And in r
 
 ### Istructions:
 
+- Ioannis, you have to compile this package
+
 - You need the `new_end_effectors` branch of centauro model (https://github.com/ADVRHumanoids/iit-centauro-ros-pkg/pull/37/commits/9d3ac95208e58ee8cfbe95cf31efe1808ddcf66b)
 
 - When generating the centauro models, put `dagana` for the model used by gazebo, and `dagana_fixed` for all the others (Xbot, Cartesio).  
