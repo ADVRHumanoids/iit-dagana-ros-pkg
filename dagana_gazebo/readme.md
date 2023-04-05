@@ -14,28 +14,16 @@ But in simulation is not so compliant with xbot2, so we need some hack. And in r
 
 ### Istructions:
 
-- On all urdf (cartesio, xbot) put dagana_fixed. dagana not fixed only to the urdf for gazebo
+- You need the `new_end_effectors` branch of centauro model (https://github.com/ADVRHumanoids/iit-centauro-ros-pkg/pull/37/commits/9d3ac95208e58ee8cfbe95cf31efe1808ddcf66b)
 
-#### Note: if using centauro, gazebo plugin handling is done automatically when generating the model with dagana (after commit https://github.com/ADVRHumanoids/iit-centauro-ros-pkg/pull/37/commits/9d3ac95208e58ee8cfbe95cf31efe1808ddcf66b)
-
-- put plugin in urdf:
+- When generating the centauro models, put `dagana` for the model used by gazebo, and `dagana_fixed` for all the others (Xbot, Cartesio).  
+  There is the xacro arg for this  
   ```xml
-  <gazebo>
-  <plugin filename="libdagana_gazebo_DaganaPlugin.so" name="dagana_plugin">
-    <gripperName>dagana_2</gripperName>
-    <jointName>dagana_2_claw_joint</jointName>
-    <rate>100</rate>
-    <p>1</p>
-    <i>0.1</i>
-    <d>0.01</d>
-    <cmdMax>1000</cmdMax>
-    <cmdMin>-1000</cmdMin>
-  </plugin>
-  </gazebo>
-  ```
-
+  <xacro:arg name="end_effector_right" default="ball"/> <!-- none, ball, dagana_fixed, dagana -->
+  ```  
+  You can also set it from command line, check ROS docs
   
-- Ignore joint in the simulation plugin:
+- After generating the models, you still need to modify one of them manually. You have to tell xbot to ignore the gripper joint. So in the urdf for xbot, put add the `<ignore_joints>` tag like this:
   ```xml
   <plugin filename="libxbot2_gz_joint_server.so" name="xbot2_joint_driver">
     <ignore_joints>
@@ -47,7 +35,7 @@ But in simulation is not so compliant with xbot2, so we need some hack. And in r
 
 ### Troubleshoots
 
-- If problem with some objects, try playing with p i d and cmdMax/Min. The one above are the default ones of gazebo jointposcontroller  
+- If problem with some objects, try playing with p i d and cmdMax/Min. Look for `libdagana_gazebo_DaganaPlugin` in the urdf where you put the `dagana` (not fixed) option. The one set are the default ones of gazebo jointposcontroller.
   
 - If still problem in keeping the grasp, try [this plugin](https://github.com/JenniferBuehler/gazebo-pkgs/wiki/The-Gazebo-grasp-fix-plugin).  
   For dagana and centauro, configs are:
