@@ -7,9 +7,11 @@ Panels:
         - /Global Options1
         - /Status1
         - /RobotModel1
-        - /TF1
+        - /RobotModel1/Links1
         - /TF1/Frames1
-      Splitter Ratio: 0.7558823823928833
+        - /MarkerArray1
+        - /MarkerArray1/Namespaces1
+      Splitter Ratio: 0.7352941036224365
     Tree Height: 549
   - Class: rviz/Selection
     Name: Selection
@@ -59,7 +61,7 @@ Visualization Manager:
       Collision Enabled: false
       Enabled: true
       Links:
-        All Links Enabled: true
+        All Links Enabled: false
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
@@ -72,7 +74,11 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
+          Value: false
+        dagana_gripper_tcp:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         dagana_gripper_top_link:
           Alpha: 1
           Show Axes: false
@@ -97,6 +103,8 @@ Visualization Manager:
           Value: true
         dagana_gripper_bottom_link:
           Value: true
+        dagana_gripper_tcp:
+          Value: true
         dagana_gripper_top_link:
           Value: true
         world:
@@ -113,11 +121,24 @@ Visualization Manager:
             dagana_gripper_top_link:
               dagana_gripper_bottom_link:
                 {}
+              dagana_gripper_tcp:
+                {}
       Update Interval: 0
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /link_inertias_viz
+      Name: MarkerArray
+      Namespaces:
+        dagana_gripper_bottom_link_com: false
+        dagana_gripper_bottom_link_inertia: false
+        dagana_gripper_top_link_com: true
+        dagana_gripper_top_link_inertia: true
+      Queue Size: 100
       Value: true
   Enabled: true
   Global Options:
-    Background Color: 48; 48; 48
+    Background Color: 233; 185; 110
     Default Light: true
     Fixed Frame: world
     Frame Rate: 30
@@ -159,9 +180,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.1253986805677414
+      Pitch: -0.06960130482912064
       Target Frame: <Fixed Frame>
-      Yaw: 3.1535730361938477
+      Yaw: 0.12857817113399506
     Saved: ~
 Window Geometry:
   Displays:
