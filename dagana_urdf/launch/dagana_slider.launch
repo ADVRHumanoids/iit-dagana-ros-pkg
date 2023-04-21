@@ -1,0 +1,23 @@
+<launch>
+
+    <arg name="gui" default="true" />
+    <arg name="visualize_inertia" default="false" />
+
+    <param name="robot_description" command="xacro '$(find dagana_urdf)/urdf/dagana.urdf.xacro'" />
+    <param name="use_gui" value="$(arg gui)"/>
+    <param name="rate" value="50.0"/>
+     
+        
+    <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
+    </node>
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" >
+        <param name="publish_frequency" type="double" value="250.0" />
+    </node> 
+
+    <node pkg="rviz" type="rviz" name="rviz" output="screen" if="$(arg gui)" args="-d $(find dagana_urdf)/rviz/dagana.rviz">
+    </node> 
+
+    <node if="$(arg visualize_inertia)" pkg="robot_inertia_publisher" type="robot_inertia_publisher" name="robot_inertia_publisher" output="screen" />
+
+</launch>

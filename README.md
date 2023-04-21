@@ -10,3 +10,6 @@ Add the gripper to the robot with the provided macro:
   <origin xyz="0. 0.05 -0.08" rpy="0. ${PI} ${PI}"/>
 </xacro:dagana_gripper>
 ```
+
+### Gazebo Usage
+check https://github.com/ADVRHumanoids/iit-dagana-ros-pkg/tree/gazebo-plugin/dagana_gazebo

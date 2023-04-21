@@ -50,20 +50,21 @@
         <origin xyz="${0.0*mmTom} ${-28.00*mmTom} ${50.25*mmTom}" rpy="${PI_2} 0 ${PI}"/>
         <parent link="${name}_top_link"/>
         <child link="${name}_bottom_link"/>
-        <axis xyz="0 0 1"/>
+        <axis xyz="-1 0 0"/>
+        <limit effort="1000" lower="0" upper="1" velocity="2.0"/>
     </joint>
 
 
     <link name="${name}_bottom_link">
         <inertial>
-            <origin xyz="${6.9644767e+01*mmTom} ${2.6548329e+00*mmTom} ${-4.1960263e+01*mmTom}" rpy="0 0 0"/>
+            <origin xyz="0 ${6.9644767e+01*mmTom} 0" rpy="0 0 0"/>
             <mass value="4.6117745e-01"/>
-            <inertia ixx="${9.3855569e+02*mm2Tom2}" 
-                     ixy="${-2.6445200e+02*mm2Tom2}" 
-                     ixz="${7.1346830e+01*mm2Tom2}" 
-                     iyy="${1.9472731e+03*mm2Tom2}" 
-                     iyz="${2.5290650e+00*mm2Tom2}" 
-                     izz="${1.4726991e+03*mm2Tom2}" />
+            <inertia iyy="${9.3855569e+02*mm2Tom2}" 
+                     iyz="${-2.6445200e+02*mm2Tom2}" 
+                     ixy="${7.1346830e+01*mm2Tom2}" 
+                     izz="${1.9472731e+03*mm2Tom2}" 
+                     ixz="${2.5290650e+00*mm2Tom2}" 
+                     ixx="${1.4726991e+03*mm2Tom2}" />
         </inertial>
 
         <visual>
@@ -82,8 +83,16 @@
             <material name="dark_grey"/>
         </collision>
     </link>
-
     
+    
+    <!-- Manually put to have a transform in a "good" grasping spot-->
+    <joint name="${name}_tcp_joint" type="fixed">
+        <origin xyz="0 -0.05 0.15" rpy="0 0 0"/>
+        <parent link="${name}_top_link"/>
+        <child link="${name}_tcp"/>
+    </joint>
+
+    <link name="${name}_tcp"></link>  
 
 </xacro:macro>
 
