@@ -12,4 +12,4 @@ Add the gripper to the robot with the provided macro:
 ```
 
 ### Gazebo Usage
-check https://github.com/ADVRHumanoids/iit-dagana-ros-pkg/tree/gazebo-plugin/dagana_gazebo
+check https://github.com/ADVRHumanoids/iit-dagana-ros-pkg/tree/master/dagana_gazebo
