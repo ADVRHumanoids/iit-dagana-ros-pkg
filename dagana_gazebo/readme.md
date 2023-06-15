@@ -29,8 +29,8 @@ But in simulation is not so compliant with xbot2, so we need some hack. And in r
 
 - If problem with some objects, try playing with p i d and cmdMax/Min. Look for `libdagana_gazebo_DaganaPlugin` in the urdf where you put the `dagana` (not fixed) option. The one set are the default ones of gazebo jointposcontroller.
   
-- If still problem in keeping the grasp, try [this plugin](https://github.com/JenniferBuehler/gazebo-pkgs/wiki/The-Gazebo-grasp-fix-plugin).  
-  For dagana and centauro, configs are:
+- If still problem in keeping the grasp, try [The-Gazebo-grasp-fix-plugin](https://github.com/JenniferBuehler/gazebo-pkgs/wiki/The-Gazebo-grasp-fix-plugin), or [the gazebo_ros_link_attacher](https://github.com/pal-robotics/gazebo_ros_link_attacher)  
+  For The-Gazebo-grasp-fix-plugin, config should be for dagana and centauro:
   ~~~xml
   <plugin name="gazebo_grasp_fix" filename="libgazebo_grasp_fix.so">
     <arm>
