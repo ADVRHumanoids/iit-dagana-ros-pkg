@@ -39,7 +39,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://dagana_urdf/meshes/dg0001-simplified.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                <mesh filename="package://dagana_urdf/meshes/dg0001-simplified_v2.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
             </geometry>
             <material name="dark_grey"/>
         </collision>

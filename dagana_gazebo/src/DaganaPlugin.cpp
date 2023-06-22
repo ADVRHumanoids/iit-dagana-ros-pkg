@@ -58,6 +58,8 @@ void gazebo::DaganaPlugin::Load(physics::ModelPtr model, sdf::ElementPtr sdf) {
     vel_max = model->GetJoint(scopedJointName)->GetVelocityLimit(0);
     
     this->rosQueueThread = std::thread(std::bind(&DaganaPlugin::QueueThread, this, rate));
+    
+    ROS_INFO("DAGANA PLUGIN INFO: Loaded correctly");
 }
 
 void gazebo::DaganaPlugin::QueueThread(double rate) {
