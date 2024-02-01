@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="dagana">
+
+<xacro:arg name="nicla_camera" default="true"/>
+<xacro:arg name="nicla_tof" default="true"/>
+<xacro:arg name="nicla_tof_visualize" default="true"/>
+<xacro:arg name="nicla_imu" default="false"/> <!-- TODO -->
+
+<xacro:property name="NICLA_CAMERA" value="$(arg nicla_camera)" />
+<xacro:property name="NICLA_TOF" value="$(arg nicla_tof)" />
+<xacro:property name="nicla_tof_visualize" value="$(arg nicla_tof_visualize)" />
+
+<xacro:property name="NICLA_IMU" value="$(arg nicla_imu)" />
+
+<material name="dagana_dark_grey">
+	<color rgba="0.2 0.2 0.2 1"/>
+</material>
+
+<xacro:property name="mmTom" value="1e-3" />
+<xacro:property name="mm2Tom2" value="1e-6" />
+<xacro:property name="PI_2" value="1.57079632679" />
+<xacro:property name="PI" value="3.14159265359" />
+
+ 
+</robot>

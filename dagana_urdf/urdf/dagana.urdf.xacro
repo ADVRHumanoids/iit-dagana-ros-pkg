@@ -3,10 +3,6 @@
 
 <xacro:include filename="$(find dagana_urdf)/urdf/dagana_macro.urdf.xacro" />
 
-<material name="dark_grey">
-	<color rgba="0.2 0.2 0.2 1"/>
-</material>
-
 <link name="world"/>
 <joint name="virtualFixed" type="fixed">
 	<parent link="world"/>

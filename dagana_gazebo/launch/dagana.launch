@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<launch>
+
+    <param name="use_sim_time" type="bool" value="true"/>
+    
+    <!-- gazebo configuration parameters -->
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+    <arg name="physics" default="ode"/>
+    <arg name="verbose" default="true"/>
+    <arg name="extra_gazebo_args" default=""/>
+    <arg name="rviz" default="true"/>
+    <arg name="rviz_config" default="$(find dagana_urdf)/rviz/dagana.rviz"/>
+
+    
+    <arg name="nicla_camera" default="true"/>
+    <arg name="nicla_tof" default="true"/>
+    <arg name="nicla_imu" default="false"/> <!-- TODO -->
+    
+    <!-- Load the URDF/SRDF into the ROS Parameter Server -->
+    <param name="robot_description"
+            command="$(find xacro)/xacro $(find dagana_urdf)/urdf/dagana.urdf.xacro 
+                nicla_camera:=$(arg nicla_camera) 
+                nicla_tof:=$(arg nicla_tof) 
+                nicla_imu:=$(arg nicla_imu)
+                "/>
+  
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="recording" value="false"/>
+        <arg name="debug" value="false"/>
+        <arg name="verbose" value="$(arg verbose)"/>
+        <arg name="physics" value="ode"/>
+    </include>
+
+
+  	<!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+    <node name="dagana_urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+            args="-urdf -model dagana -param robot_description"/>
+        
+    <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
+    </node>
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" >
+        <param name="publish_frequency" type="double" value="250.0" />
+    </node> 
+  
+    <node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz" output="screen" args="-d $(arg rviz_config)">
+    </node> 
+
+</launch>
