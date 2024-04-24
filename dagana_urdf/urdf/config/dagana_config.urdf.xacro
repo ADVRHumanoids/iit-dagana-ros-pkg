@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="dagana">
 
-<xacro:arg name="nicla_camera" default="true"/>
+<xacro:arg name="nicla_camera" default="false"/>
 <xacro:arg name="nicla_tof" default="true"/>
 <xacro:arg name="nicla_tof_visualize" default="true"/>
 <xacro:arg name="nicla_imu" default="false"/> <!-- TODO -->
