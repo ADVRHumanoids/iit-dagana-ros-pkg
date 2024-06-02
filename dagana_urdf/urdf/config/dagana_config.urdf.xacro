@@ -2,10 +2,10 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="dagana">
 
 <xacro:arg name="nicla" default="false"/>
-<xacro:arg name="nicla_camera" default="false"/>
+<xacro:arg name="nicla_camera" default="true"/>
 <xacro:arg name="nicla_tof" default="true"/>
 <xacro:arg name="nicla_tof_visualize" default="true"/>
-<xacro:arg name="nicla_imu" default="false"/>
+<xacro:arg name="nicla_imu" default="true"/>
 
 <xacro:property name="NICLA" value="$(arg nicla)" />
 <xacro:property name="NICLA_CAMERA" value="$(arg nicla_camera)" />
