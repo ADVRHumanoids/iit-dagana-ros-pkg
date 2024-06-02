@@ -2,12 +2,16 @@
 
     <arg name="gui" default="true" />
     <arg name="visualize_inertia" default="false" />
+    <arg name="nicla" default="false" />
 
-    <param name="robot_description" command="xacro '$(find dagana_urdf)/urdf/dagana.urdf.xacro'" />
     <param name="use_gui" value="$(arg gui)"/>
     <param name="rate" value="50.0"/>
-     
-        
+
+    <param name="robot_description"
+            command="$(find xacro)/xacro $(find dagana_urdf)/urdf/dagana.urdf.xacro 
+                nicla:=$(arg nicla) 
+                "/>
+
     <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
     </node>
 

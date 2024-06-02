@@ -96,10 +96,11 @@
     </gazebo>
 
     <!-- NICLA PART -->
-    <xacro:if value="${NICLA_CAMERA}">
-    	<xacro:include filename="$(find niclabox)/urdf/nicla_macro.urdf.xacro" />
+    <xacro:if value="${NICLA}">
+    	<xacro:include filename="$(find nicla_vision_ros)/urdf/nicla_macro.urdf.xacro" />
 		<xacro:nicla_box parent_link="${name}_top_link">
-            <origin xyz="0.0000044 -0.0234997 0.1039715" rpy="0 ${-PI/2} ${-PI/2}"/>
+            <!-- <origin xyz="0.0000044 -0.0234997 0.1039715" rpy="0 0 ${PI}"/> THIS IS TOP LINK TO CAMERA-->
+            <origin xyz="-0.002506 -0.0157197 0.0994715" rpy="0 0 ${PI}"/>
 		</xacro:nicla_box>
     </xacro:if>
 
