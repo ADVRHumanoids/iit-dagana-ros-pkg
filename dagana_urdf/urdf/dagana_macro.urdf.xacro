@@ -47,7 +47,7 @@
             
             <inertial>
                 <origin xyz="${-6.2068321e+00*mmTom} ${-1.1480379e+01*mmTom}  ${4.7628197e+01*mmTom}" rpy="0 0 0"/>
-                <mass value="1.464"/>
+                <mass value="1.548"/>
                 <inertia ixx="${2.8611741e+03*mm2Tom2}" 
                         ixy="${-2.7536524e+00*mm2Tom2}" 
                         ixz="${-1.8353431e+02*mm2Tom2}" 
@@ -131,7 +131,7 @@
 
             <inertial>
                 <origin xyz="${2.5812008e+01*mmTom} ${2.5751001e+00*mmTom} ${-4.9454259e+00*mmTom}" rpy="0 0 0"/>
-                <mass value="1.8562763e-01"/>
+                <mass value="2.18e-01"/>
                 <inertia ixx="${4.5712825e+02*mm2Tom2}" 
                         ixy="${-1.1939252e+01*mm2Tom2}" 
                         ixz="${-3.2916995e+01*mm2Tom2}"
@@ -200,7 +200,7 @@
         <link name="${name}_bottom_link_jaw">
             <inertial>
                 <origin xyz="0.0 ${-5.0362316e+00*mmTom} ${4.8400486e+01*mmTom}" rpy="0 0 0"/>
-                <mass value="4.6341578e-01"/>
+                <mass value="4.26e-01"/>
                 <inertia ixx="${5.6823263e+02*mm2Tom2}" 
                         ixy="${0.0*mm2Tom2}" 
                         ixz="${0.0*mm2Tom2}"
@@ -228,7 +228,7 @@
         <link name="${name}_top_link_jaw">
             <inertial>
                 <origin xyz="0.0 ${-3.3025449e+00*mmTom} ${5.2167268e+01*mmTom}" rpy="0 0 0"/>
-                <mass value="3.9065902e-01"/>
+                <mass value="3.52e-01"/>
                 <inertia ixx="${5.2459269e+02*mm2Tom2}" 
                         ixy="${0.0*mm2Tom2}" 
                         ixz="${0.0*mm2Tom2}"
