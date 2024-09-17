@@ -43,23 +43,23 @@
             </collision>
         
         </xacro:if>
-        <xacro:if value="${DAGANA_CLAWS_TYPE == 'concert_formwork_claws'}">
+        <xacro:if value="${DAGANA_CLAWS_TYPE == 'concert_formwork_claws' or DAGANA_CLAWS_TYPE == 'concert_tube_claws'}">
             
             <inertial>
-                <origin xyz="${-6.3562154e+00*mmTom} ${-6.0265532e+00*mmTom}  ${6.0068288e+01*mmTom}" rpy="0 0 0"/>
-                <mass value="1.870"/>
-                <inertia ixx="${5.0510328e+03*mm2Tom2}" 
-                        ixy="${-2.5264216e+02*mm2Tom2}" 
-                        ixz="${-1.2103013e+02*mm2Tom2}" 
-                        iyy="${4.7944612e+03*mm2Tom2}" 
-                        iyz="${-7.3917704e+02*mm2Tom2}" 
-                        izz="${3.1156997e+03*mm2Tom2}" />
+                <origin xyz="${-6.2068321e+00*mmTom} ${-1.1480379e+01*mmTom}  ${4.7628197e+01*mmTom}" rpy="0 0 0"/>
+                <mass value="1.464"/>
+                <inertia ixx="${2.8611741e+03*mm2Tom2}" 
+                        ixy="${-2.7536524e+00*mm2Tom2}" 
+                        ixz="${-1.8353431e+02*mm2Tom2}" 
+                        iyy="${2.5520008e+03*mm2Tom2}" 
+                        iyz="${1.1763870e+02*mm2Tom2}" 
+                        izz="${3.0966827e+03*mm2Tom2}" />
             </inertial>
 
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://dagana_urdf/meshes/dg0001-simplified.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                    <mesh filename="package://dagana_urdf/meshes/mesh_dagana-base.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
                 </geometry>
                 <material name="dagana_dark_grey"/>
             </visual>
@@ -67,51 +67,34 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://dagana_urdf/meshes/dg0001-simplified_v2.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                    <mesh filename="package://dagana_urdf/meshes/mesh_dagana-base.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
                 </geometry>
             </collision>
         
-        </xacro:if>
-        <xacro:if value="${DAGANA_CLAWS_TYPE == 'concert_tube_claws'}">
-            
-            <inertial>
-                <origin xyz="${-6.3562154e+00*mmTom} ${-6.0265532e+00*mmTom}  ${6.0068288e+01*mmTom}" rpy="0 0 0"/>
-                <mass value="1.929"/>
-                <inertia ixx="${5.0510328e+03*mm2Tom2}" 
-                        ixy="${-2.5264216e+02*mm2Tom2}" 
-                        ixz="${-1.2103013e+02*mm2Tom2}" 
-                        iyy="${4.7944612e+03*mm2Tom2}" 
-                        iyz="${-7.3917704e+02*mm2Tom2}" 
-                        izz="${3.1156997e+03*mm2Tom2}" />
-            </inertial>
-
-            <visual>
-                <origin xyz="0 0 0" rpy="0 0 0" />
-                <geometry>
-                    <mesh filename="package://dagana_urdf/meshes/dg0001-simplified.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
-                </geometry>
-                <material name="dagana_dark_grey"/>
-            </visual>
-
-            <collision>
-                <origin xyz="0 0 0" rpy="0 0 0" />
-                <geometry>
-                    <mesh filename="package://dagana_urdf/meshes/dg0001-simplified_v2.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
-                </geometry>
-            </collision>
         </xacro:if>
         
     </link>
 
+    <xacro:if value="${DAGANA_CLAWS_TYPE == 'concert_formwork_claws' or DAGANA_CLAWS_TYPE == 'concert_tube_claws'}">
+        <joint name="${name}_claw_joint" type="${joint_type}">
+            <origin xyz="${0.0*mmTom} ${-28.00*mmTom} ${50.25*mmTom}" rpy="${-PI} ${-PI_2} 0 "/>
+            <parent link="${name}_top_link"/>
+            <child link="${name}_bottom_link"/>
+            <axis xyz="0 0 1"/>
+            <limit effort="1000" lower="-1.5" upper="1.3" velocity="10.0"/>
+        </joint>
+    </xacro:if>
 
-    <joint name="${name}_claw_joint" type="${joint_type}">
-        <origin xyz="${0.0*mmTom} ${-28.00*mmTom} ${50.25*mmTom}" rpy="${PI_2} 0 ${PI}"/>
-        <parent link="${name}_top_link"/>
-        <child link="${name}_bottom_link"/>
-        <axis xyz="-1 0 0"/>
-        <limit effort="1000" lower="-1.5" upper="1.3" velocity="10.0"/>
-    </joint>
-
+    <xacro:if value="${DAGANA_CLAWS_TYPE == 'centauro_claws'}">
+        <joint name="${name}_claw_joint" type="${joint_type}">
+            <origin xyz="${0.0*mmTom} ${-28.00*mmTom} ${50.25*mmTom}" rpy="${PI_2} 0 ${PI}"/>
+            <parent link="${name}_top_link"/>
+            <child link="${name}_bottom_link"/>
+            <axis xyz="-1 0 0"/>
+            <limit effort="1000" lower="-1.5" upper="1.3" velocity="10.0"/>
+        </joint>
+       
+    </xacro:if>
 
     <link name="${name}_bottom_link">
         
@@ -144,23 +127,23 @@
             </collision>
 
         </xacro:if>
-        <xacro:if value="${DAGANA_CLAWS_TYPE == 'concert_formwork_claws'}">
+        <xacro:if value="${DAGANA_CLAWS_TYPE == 'concert_formwork_claws' or DAGANA_CLAWS_TYPE == 'concert_tube_claws'}">
 
             <inertial>
-                <origin xyz="0 ${6.9644767e+01*mmTom} 0" rpy="0 0 0"/>
-                <mass value="0.644"/>
-                <inertia iyy="${9.3855569e+02*mm2Tom2}" 
-                        iyz="${-2.6445200e+02*mm2Tom2}" 
-                        ixy="${7.1346830e+01*mm2Tom2}" 
-                        izz="${1.9472731e+03*mm2Tom2}" 
-                        ixz="${2.5290650e+00*mm2Tom2}" 
-                        ixx="${1.4726991e+03*mm2Tom2}" />
+                <origin xyz="${2.5812008e+01*mmTom} ${2.5751001e+00*mmTom} ${-4.9454259e+00*mmTom}" rpy="0 0 0"/>
+                <mass value="1.8562763e-01"/>
+                <inertia ixx="${4.5712825e+02*mm2Tom2}" 
+                        ixy="${-1.1939252e+01*mm2Tom2}" 
+                        ixz="${-3.2916995e+01*mm2Tom2}"
+                        iyy="${5.3267788e+02*mm2Tom2}" 
+                        iyz="${-2.1469634e+00*mm2Tom2}" 
+                        izz="${1.5156084e+02*mm2Tom2}"/>
             </inertial>
 
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://dagana_urdf/meshes/dg0002.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                    <mesh filename="package://dagana_urdf/meshes/mesh_dagana-link.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
                 </geometry>
                 <material name="dagana_dark_grey"/>
             </visual>
@@ -168,73 +151,202 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://dagana_urdf/meshes/dg0002-ch.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
-                </geometry>
-            </collision>
-
-        </xacro:if>
-        <xacro:if value="${DAGANA_CLAWS_TYPE == 'concert_tube_claws'}">
-
-            <inertial>
-                <origin xyz="0 ${6.9644767e+01*mmTom} 0" rpy="0 0 0"/>
-                <mass value="0.608"/>
-                <inertia iyy="${9.3855569e+02*mm2Tom2}" 
-                        iyz="${-2.6445200e+02*mm2Tom2}" 
-                        ixy="${7.1346830e+01*mm2Tom2}" 
-                        izz="${1.9472731e+03*mm2Tom2}" 
-                        ixz="${2.5290650e+00*mm2Tom2}" 
-                        ixx="${1.4726991e+03*mm2Tom2}" />
-            </inertial>
-
-            <visual>
-                <origin xyz="0 0 0" rpy="0 0 0" />
-                <geometry>
-                    <mesh filename="package://dagana_urdf/meshes/dg0002.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
-                </geometry>
-                <material name="dagana_dark_grey"/>
-            </visual>
-
-            <collision>
-                <origin xyz="0 0 0" rpy="0 0 0" />
-                <geometry>
-                    <mesh filename="package://dagana_urdf/meshes/dg0002-ch.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                    <mesh filename="package://dagana_urdf/meshes/mesh_dagana-link.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
                 </geometry>
             </collision>
 
         </xacro:if>
 
     </link>
+
+    <xacro:if value="${GAZEBO_URDF}">
+        <gazebo reference="${name}_bottom_link">
+            <mu1>0.2</mu1>
+            <mu2>0.2</mu2>
+            <kp>100000000.0</kp>
+            <kd>1.0</kd>
+            <maxVel>0.0</maxVel>
+            <minDepth>0.0001</minDepth>
+            <selfCollide>True</selfCollide>
+            <material>Gazebo/DarkGrey</material>
+        </gazebo>
+        <gazebo reference="${name}_top_link">
+            <mu1>0.2</mu1>
+            <mu2>0.2</mu2>
+            <kp>100000000.0</kp>
+            <kd>1.0</kd>
+            <maxVel>0.0</maxVel>
+            <minDepth>0.0001</minDepth>
+            <selfCollide>True</selfCollide>
+            <material>Gazebo/DarkGrey</material>
+        </gazebo>
+    </xacro:if>
     
-    
-    <!-- Manually put to have a transform in a "good" grasping spot-->
+    <!-- TCP frame: Manually put to have a transform in a "good" grasping spot-->
     <joint name="${name}_tcp_joint" type="fixed">
-        <origin xyz="0 -0.05 0.15" rpy="0 0 0"/>
+        <xacro:if value="${DAGANA_CLAWS_TYPE == 'centauro_claws'}">
+            <origin xyz="0 -0.05 0.15" rpy="0 0 0"/>
+        </xacro:if>
+        <xacro:if value="${DAGANA_CLAWS_TYPE == 'concert_formwork_claws' or DAGANA_CLAWS_TYPE == 'concert_tube_claws'}">
+            <origin xyz="0 -0.05 0.18" rpy="0 0 0"/>
+        </xacro:if>
         <parent link="${name}_top_link"/>
         <child link="${name}_tcp"/>
     </joint>
-
     <link name="${name}_tcp"></link>  
 
-    <gazebo reference="${name}_bottom_link">
-        <mu1>0.2</mu1>
-        <mu2>0.2</mu2>
-        <kp>100000000.0</kp>
-        <kd>1.0</kd>
-        <maxVel>0.0</maxVel>
-        <minDepth>0.0001</minDepth>
-        <selfCollide>True</selfCollide>
-        <material>Gazebo/DarkGrey</material>
-    </gazebo>
-    <gazebo reference="${name}_top_link">
-        <mu1>0.2</mu1>
-        <mu2>0.2</mu2>
-        <kp>100000000.0</kp>
-        <kd>1.0</kd>
-        <maxVel>0.0</maxVel>
-        <minDepth>0.0001</minDepth>
-        <selfCollide>True</selfCollide>
-        <material>Gazebo/DarkGrey</material>
-    </gazebo>
+    <!-- Dagana Jaws : Formwork / Tube -->
+    <xacro:if value="${DAGANA_CLAWS_TYPE == 'concert_formwork_claws'}">
+        <link name="${name}_bottom_link_jaw">
+            <inertial>
+                <origin xyz="0.0 ${-5.0362316e+00*mmTom} ${4.8400486e+01*mmTom}" rpy="0 0 0"/>
+                <mass value="4.6341578e-01"/>
+                <inertia ixx="${5.6823263e+02*mm2Tom2}" 
+                        ixy="${0.0*mm2Tom2}" 
+                        ixz="${0.0*mm2Tom2}"
+                        iyy="${9.3524040e+02*mm2Tom2}" 
+                        iyz="${5.2302782e+01*mm2Tom2}" 
+                        izz="${5.0082202e+02*mm2Tom2}"/>
+            </inertial>
+
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://dagana_urdf/meshes/mesh_formwork-base.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                </geometry>
+                <material name="dagana_dark_grey"/>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://dagana_urdf/meshes/mesh_formwork-base.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                </geometry>
+            </collision>
+        </link>
+
+        <link name="${name}_top_link_jaw">
+            <inertial>
+                <origin xyz="0.0 ${-3.3025449e+00*mmTom} ${5.2167268e+01*mmTom}" rpy="0 0 0"/>
+                <mass value="3.9065902e-01"/>
+                <inertia ixx="${5.2459269e+02*mm2Tom2}" 
+                        ixy="${0.0*mm2Tom2}" 
+                        ixz="${0.0*mm2Tom2}"
+                        iyy="${8.5587829e+02*mm2Tom2}" 
+                        iyz="${6.0052568e+01*mm2Tom2}" 
+                        izz="${4.4262897e+02*mm2Tom2}"/>
+            </inertial>
+
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://dagana_urdf/meshes/mesh_formwork-thumb.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                </geometry>
+                <material name="dagana_dark_grey"/>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://dagana_urdf/meshes/mesh_formwork-thumb.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                </geometry>
+            </collision>
+        </link>
+    </xacro:if>
+
+    <xacro:if value="${DAGANA_CLAWS_TYPE == 'concert_tube_claws'}">
+        <link name="${name}_bottom_link_jaw">
+            <inertial>
+                <origin xyz="0.0 ${3.5142417e+00*mmTom} ${5.6108761e+01*mmTom}" rpy="0 0 0"/>
+                <mass value="3.7384233e-01"/>
+                <inertia ixx="${8.3782493e+02*mm2Tom2}" 
+                        ixy="${0.0*mm2Tom2}" 
+                        ixz="${0.0*mm2Tom2}"
+                        iyy="${1.2760063e+03*mm2Tom2}" 
+                        iyz="${3.5792833e+01*mm2Tom2}" 
+                        izz="${5.7119978e+02*mm2Tom2}"/>
+            </inertial>
+
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://dagana_urdf/meshes/mesh_tube-thumb.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                </geometry>
+                <material name="dagana_dark_grey"/>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://dagana_urdf/meshes/mesh_tube-thumb.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                </geometry>
+            </collision>
+        </link>
+
+        <link name="${name}_top_link_jaw">
+            <inertial>
+                <origin xyz="0.0 ${1.6436664e+01*mmTom} ${6.5721735e+01*mmTom}" rpy="0 0 0"/>
+                <mass value="4.0009637e-01"/>
+                <inertia ixx="${1.2400008e+03*mm2Tom2}" 
+                        ixy="${0.0*mm2Tom2}" 
+                        ixz="${0.0*mm2Tom2}"
+                        iyy="${1.6206699e+03*mm2Tom2}" 
+                        iyz="${-3.3769453e+01*mm2Tom2}" 
+                        izz="${6.8633093e+02*mm2Tom2}"/>
+            </inertial>
+
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://dagana_urdf/meshes/mesh_tube-base.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                </geometry>
+                <material name="dagana_dark_grey"/>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://dagana_urdf/meshes/mesh_tube-base.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                </geometry>
+            </collision>
+        </link>
+    </xacro:if>
+
+    <xacro:if value="${DAGANA_CLAWS_TYPE == 'concert_formwork_claws' or DAGANA_CLAWS_TYPE == 'concert_tube_claws'}">
+        <joint name="${name}_bottom_link_jaw_joint" type="fixed">
+            <origin xyz="0.055 0.0 0.0" rpy="0 ${PI_2} 0"/>
+            <parent link="${name}_bottom_link"/>
+            <child link="${name}_bottom_link_jaw"/>
+        </joint>
+        <joint name="${name}_top_link_jaw_joint" type="fixed">
+            <origin xyz="0.0 0.028 0.10525" rpy="0 0 0"/>
+            <parent link="${name}_top_link"/>
+            <child link="${name}_top_link_jaw"/>
+        </joint>
+
+        <xacro:if value="${GAZEBO_URDF}">
+            <gazebo reference="${name}_bottom_link_jaw">
+                <mu1>0.2</mu1>
+                <mu2>0.2</mu2>
+                <kp>100000000.0</kp>
+                <kd>1.0</kd>
+                <maxVel>0.0</maxVel>
+                <minDepth>0.0001</minDepth>
+                <selfCollide>True</selfCollide>
+                <material>Gazebo/DarkGrey</material>
+            </gazebo>
+            <gazebo reference="${name}_top_link_jaw">
+                <mu1>0.2</mu1>
+                <mu2>0.2</mu2>
+                <kp>100000000.0</kp>
+                <kd>1.0</kd>
+                <maxVel>0.0</maxVel>
+                <minDepth>0.0001</minDepth>
+                <selfCollide>True</selfCollide>
+                <material>Gazebo/DarkGrey</material>
+            </gazebo>
+        </xacro:if>
+    </xacro:if>
 
     <!-- NICLA PART -->
     <xacro:if value="${NICLA}">
