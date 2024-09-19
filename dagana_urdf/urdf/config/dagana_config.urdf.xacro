@@ -7,10 +7,10 @@
 <xacro:arg name="nicla_tof_visualize" default="true"/>
 <xacro:arg name="nicla_imu" default="true"/>
 
-<xacro:arg name="dagana_claws_type" default="centauro_claws"/>
 <!-- dagana_claws_types: - 'centauro_claws' -->
 <!--                     - 'concert_formwork_claws' -->
 <!--                     - 'concert_tube_claws'  -->
+<xacro:arg name="dagana_claws_type" default="centauro_claws"/>
 
 <xacro:property name="NICLA" value="$(arg nicla)" />
 <xacro:property name="NICLA_CAMERA" value="$(arg nicla_camera)" />

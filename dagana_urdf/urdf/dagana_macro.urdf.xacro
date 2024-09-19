@@ -3,7 +3,7 @@
 
 <xacro:include filename="$(find dagana_urdf)/urdf/config/dagana_config.urdf.xacro" />
 
-<xacro:macro name="dagana_gripper" params="name joint_type parent_link *origin">
+<xacro:macro name="dagana_gripper" params="name joint_type parent_link GAZEBO_URDF:=^|false *origin">
 
     <joint name="${name}_mount_joint" type="fixed">
         <xacro:insert_block name="origin"/>
