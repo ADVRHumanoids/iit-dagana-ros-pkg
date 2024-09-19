@@ -7,6 +7,11 @@
 <xacro:arg name="nicla_tof_visualize" default="true"/>
 <xacro:arg name="nicla_imu" default="true"/>
 
+<!-- dagana_claws_types: - 'centauro_claws' -->
+<!--                     - 'concert_formwork_claws' -->
+<!--                     - 'concert_tube_claws'  -->
+<xacro:arg name="dagana_claws_type" default="centauro_claws"/>
+
 <xacro:property name="NICLA" value="$(arg nicla)" />
 <xacro:property name="NICLA_CAMERA" value="$(arg nicla_camera)" />
 <xacro:property name="NICLA_TOF" value="$(arg nicla_tof)" />
@@ -22,5 +27,6 @@
 <xacro:property name="PI_2" value="1.57079632679" />
 <xacro:property name="PI" value="3.14159265359" />
 
+<xacro:property name="DAGANA_CLAWS_TYPE" value="$(arg dagana_claws_type)" />
  
 </robot>
