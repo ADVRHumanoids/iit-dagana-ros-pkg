@@ -185,7 +185,7 @@
     <!-- TCP frame: Manually put to have a transform in a "good" grasping spot-->
     <joint name="${name}_tcp_joint" type="fixed">
         <xacro:if value="${DAGANA_CLAWS_TYPE == 'centauro_claws'}">
-            <origin xyz="0 -0.04 0.17" rpy="0 0 0"/>
+            <origin xyz="0 -0.04 0.16" rpy="0 0 0"/>
         </xacro:if>
         <xacro:if value="${DAGANA_CLAWS_TYPE == 'concert_formwork_claws' or DAGANA_CLAWS_TYPE == 'concert_tube_claws'}">
             <origin xyz="0 -0.05 0.18" rpy="0 0 0"/>
