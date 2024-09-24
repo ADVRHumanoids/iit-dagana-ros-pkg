@@ -15,16 +15,22 @@
     <arg name="rviz" default="true"/>
     <arg name="rviz_config" default="$(find dagana_urdf)/rviz/dagana.rviz"/>
 
-    
-    <arg name="nicla_camera" default="true"/>
-    <arg name="nicla_tof" default="true"/>
-    <arg name="nicla_imu" default="false"/> <!-- TODO -->
+    <arg name="gazebo_urdf" default="true"/>
+
+    <!-- with nicla true, by default every sensor is true -->
+    <xacro:arg name="nicla" default="true"/> 
+    <!-- <xacro:arg name="nicla_camera" default="true"/>
+    <xacro:arg name="nicla_tof" default="true"/>
+    <xacro:arg name="nicla_tof_visualize" default="true"/>
+    <xacro:arg name="nicla_imu" default="true"/> -->
     
     <!-- Load the URDF/SRDF into the ROS Parameter Server -->
     <param name="robot_description"
             command="$(find xacro)/xacro $(find dagana_urdf)/urdf/dagana.urdf.xacro 
+                nicla:=$(arg nicla) 
                 nicla_camera:=$(arg nicla_camera) 
                 nicla_tof:=$(arg nicla_tof) 
+                nicla_tof_visualize:=$(arg nicla_tof_visualize) 
                 nicla_imu:=$(arg nicla_imu)
                 "/>
   
