@@ -8,6 +8,10 @@ The gazebo jointStateController permits to "stop" the closure when the contacts 
 
 Command and state of the gripper are available on the same topic as real robot: `xbotcore/gripper/dagana_2/command` and `xbotcore/gripper/dagana_2/state`  
 
+As today everythin should work inside the XBot environment even in simulation. What follows is just for historians.
+
+# Deprecated info 
+
 **Note** Sometimes it seems that contacts are not extablished. Try to lift anyway visually there may be some problem with gazebo (enable the contact visualization in gazebo to verify
 
 But in simulation is not so compliant with xbot2, so we need some hack. And in rviz it does not move

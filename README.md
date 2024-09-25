@@ -12,4 +12,20 @@ Add the gripper to the robot with the provided macro:
 ```
 
 ### Gazebo Usage
-check https://github.com/ADVRHumanoids/iit-dagana-ros-pkg/tree/master/dagana_gazebo
+Usual XBot setting,  
+Please note that using default ROS-Gazebo plugin (at https://github.com/ADVRHumanoids/iit-dagana-ros-pkg/tree/master/dagana_gazebo) is deprecated
+
+# Dagana Paper
+```bibtex
+@inproceedings {Dagana2024,
+  author = {Del Bianco, Edoardo and Torielli, Davide and Rollo, Federico and Gasperini, Damiano and Laurenzi, Arturo and Baccelliere, Lorenzo and Muratore, Luca and Roveri, Marco and Tsagarakis, Nikos G.},
+  booktitle={2024 IEEE-RAS 23rd International Conference on Humanoid Robots (Humanoids)}, 
+  title = {A High-Force Gripper with Embedded Multimodal Sensing for Powerful and Perception Driven Grasping},
+  year={2024},
+  volume={},
+  number={},
+  pages={},
+  doi={}
+}
+```
+
