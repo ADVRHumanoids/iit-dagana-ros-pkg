@@ -161,8 +161,8 @@
 
     <xacro:if value="${GAZEBO_URDF}">
         <gazebo reference="${name}_bottom_link">
-            <mu1>0.2</mu1>
-            <mu2>0.2</mu2>
+            <mu1>1</mu1>
+            <mu2>1</mu2>
             <kp>100000000.0</kp>
             <kd>1.0</kd>
             <maxVel>0.0</maxVel>
@@ -171,8 +171,8 @@
             <material>Gazebo/DarkGrey</material>
         </gazebo>
         <gazebo reference="${name}_top_link">
-            <mu1>0.2</mu1>
-            <mu2>0.2</mu2>
+            <mu1>1</mu1>
+            <mu2>1</mu2>
             <kp>100000000.0</kp>
             <kd>1.0</kd>
             <maxVel>0.0</maxVel>
@@ -326,8 +326,8 @@
 
         <xacro:if value="${GAZEBO_URDF}">
             <gazebo reference="${name}_bottom_link_jaw">
-                <mu1>0.2</mu1>
-                <mu2>0.2</mu2>
+                <mu1>1</mu1>
+                <mu2>1</mu2>
                 <kp>100000000.0</kp>
                 <kd>1.0</kd>
                 <maxVel>0.0</maxVel>
@@ -336,8 +336,8 @@
                 <material>Gazebo/DarkGrey</material>
             </gazebo>
             <gazebo reference="${name}_top_link_jaw">
-                <mu1>0.2</mu1>
-                <mu2>0.2</mu2>
+                <mu1>1</mu1>
+                <mu2>1</mu2>
                 <kp>100000000.0</kp>
                 <kd>1.0</kd>
                 <maxVel>0.0</maxVel>
