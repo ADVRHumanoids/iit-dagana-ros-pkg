@@ -91,7 +91,7 @@
             <parent link="${name}_top_link"/>
             <child link="${name}_bottom_link"/>
             <axis xyz="-1 0 0"/>
-            <limit effort="1000" lower="-1.5" upper="1.3" velocity="10.0"/>
+            <limit effort="1000" lower="-0.1" upper="1.3" velocity="10.0"/>
         </joint>
        
     </xacro:if>
