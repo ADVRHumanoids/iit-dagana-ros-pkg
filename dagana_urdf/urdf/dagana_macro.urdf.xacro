@@ -45,6 +45,7 @@
         </xacro:if>
         <xacro:if value="${DAGANA_CLAWS_TYPE == 'centauro_claws_palm_separated'}">
 
+            <!-- TODO this is the inertial of the entire piece (ABC), it should be divided among the different pieces -->
             <inertial>
                 <origin xyz="${-6.3562154e+00*mmTom} ${-6.0265532e+00*mmTom}  ${6.0068288e+01*mmTom}" rpy="0 0 0"/>
                 <mass value="1.7432400"/>
@@ -59,7 +60,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://dagana_urdf/meshes/dg0001-simplified_v2_bottom.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                    <mesh filename="package://dagana_urdf/meshes/dagana_fixed_A.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
                 </geometry>
                 <material name="dagana_dark_grey"/>
             </visual>
@@ -67,7 +68,7 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://dagana_urdf/meshes/dg0001-simplified_v2_bottom.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                    <mesh filename="package://dagana_urdf/meshes/dagana_fixed_A_simple.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
                 </geometry>
             </collision>
         
@@ -104,16 +105,16 @@
     </link>
     
     <xacro:if value="${DAGANA_CLAWS_TYPE == 'centauro_claws_palm_separated'}">
-        <joint name="${name}_top_link_palm_fixed_joint" type="fixed" dont_collapse="true">
+        <joint name="${name}_fixed_A_B_fixed_joint" type="fixed" dont_collapse="true">
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <parent link="${name}_top_link"/>
-            <child link="${name}_top_link_palm"/>
+            <child link="${name}_fixed_B"/>
         </joint>
-        <link name="${name}_top_link_palm">
+        <link name="${name}_fixed_B">
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://dagana_urdf/meshes/dg0001-simplified_v2_palm.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                    <mesh filename="package://dagana_urdf/meshes/dagana_fixed_B.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
                 </geometry>
                 <material name="dagana_dark_grey"/>
             </visual>
@@ -121,7 +122,29 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://dagana_urdf/meshes/dg0001-simplified_v2_palm.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                    <mesh filename="package://dagana_urdf/meshes/dagana_fixed_B_simple.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="${name}_fixed_B_C_fixed_joint" type="fixed" dont_collapse="true">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <parent link="${name}_fixed_B"/>
+            <child link="${name}_fixed_C"/>
+        </joint>
+        <link name="${name}_fixed_C">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://dagana_urdf/meshes/dagana_fixed_C.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                </geometry>
+                <material name="dagana_dark_grey"/>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://dagana_urdf/meshes/dagana_fixed_C_simple.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
                 </geometry>
             </collision>
         </link>
@@ -195,7 +218,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://dagana_urdf/meshes/dg0002-ch-bottom.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                    <mesh filename="package://dagana_urdf/meshes/dagana_claw_A.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
                 </geometry>
                 <material name="dagana_dark_grey"/>
             </visual>
@@ -203,7 +226,7 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://dagana_urdf/meshes/dg0002-ch-bottom.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                    <mesh filename="package://dagana_urdf/meshes/dagana_claw_A_simple.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
                 </geometry>
             </collision>
 
@@ -241,16 +264,16 @@
     </link>
     
     <xacro:if value="${DAGANA_CLAWS_TYPE == 'centauro_claws_palm_separated'}">
-        <joint name="${name}_claw_palm_fixed_joint" type="fixed" dont_collapse="true">
+        <joint name="${name}_claw_A_B_fixed_joint" type="fixed" dont_collapse="true">
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <parent link="${name}_bottom_link"/>
-            <child link="${name}_bottom_link_palm"/>
+            <child link="${name}_claw_B"/>
         </joint>
-        <link name="${name}_bottom_link_palm">
+        <link name="${name}_claw_B">
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://dagana_urdf/meshes/dg0002-ch-palm.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                    <mesh filename="package://dagana_urdf/meshes/dagana_claw_B.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
                 </geometry>
                 <material name="dagana_dark_grey"/>
             </visual>
@@ -258,7 +281,7 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://dagana_urdf/meshes/dg0002-ch-palm.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
+                    <mesh filename="package://dagana_urdf/meshes/dagana_claw_B_simple.stl" scale="${mmTom} ${mmTom} ${mmTom}" />
                 </geometry>
             </collision>
         </link>
