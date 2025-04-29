@@ -3,13 +3,15 @@
     <arg name="gui" default="true" />
     <arg name="visualize_inertia" default="false" />
     <arg name="nicla" default="false" />
+    <arg name="dagana_claws_type" default="centauro_claws" />
 
     <param name="use_gui" value="$(arg gui)"/>
     <param name="rate" value="50.0"/>
 
     <param name="robot_description"
             command="$(find xacro)/xacro $(find dagana_urdf)/urdf/dagana.urdf.xacro 
-                nicla:=$(arg nicla) 
+                nicla:=$(arg nicla)
+                dagana_claws_type:=$(arg dagana_claws_type) 
                 "/>
 
     <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
