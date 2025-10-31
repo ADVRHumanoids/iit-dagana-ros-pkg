@@ -19,17 +19,7 @@ include_directories(${gz-sim8_INCLUDE_DIRS})
 # link_directories(${GAZEBO_LIBRARY_DIRS})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
 
-
-# Build our plugin
-add_library(dagana_gazebo_DaganaPlugin SHARED
-    src/DaganaPlugin.cpp
-)
-target_link_libraries(dagana_gazebo_DaganaPlugin 
-  ${gz-sim8_LIBRARIES}
-  ${gz-plugin2_LIBRARIES}
-)
-
-install(DIRECTORY include launch src
+install(DIRECTORY launch
     DESTINATION share/${PROJECT_NAME})
 
 ament_package()
