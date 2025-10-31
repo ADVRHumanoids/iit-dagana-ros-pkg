@@ -3,25 +3,29 @@
     <arg name="gui" default="true" />
     <arg name="visualize_inertia" default="false" />
     <arg name="nicla" default="false" />
+    <arg name="dagana_claws_type" default="centauro_claws" />
 
-    <param name="use_gui" value="$(arg gui)"/>
-    <param name="rate" value="50.0"/>
+    <let name="xacro_file" value="$(find-pkg-share dagana_urdf)/urdf/dagana.urdf.xacro"/>
+    <let name="robot_description_content" value="$(command 'xacro $(var xacro_file) 
+                nicla:=$(var nicla)
+                dagana_claws_type:=$(var dagana_claws_type)')"
+    />
 
-    <param name="robot_description"
-            command="$(find xacro)/xacro $(find dagana_urdf)/urdf/dagana.urdf.xacro 
-                nicla:=$(arg nicla) 
-                "/>
-
-    <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
+    <node name="joint_state_publisher" pkg="joint_state_publisher_gui" exec="joint_state_publisher_gui">
+        <param name="use_gui" value="$(var gui)"/>
+        <param name="rate" value="50.0"/>
     </node>
 
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" >
-        <param name="publish_frequency" type="double" value="250.0" />
+    <node pkg="robot_state_publisher" exec="robot_state_publisher" name="robot_state_publisher" output="screen" >
+        <param name="robot_description" value="$(var robot_description_content)" />
+        <param name="publish_frequency" value="250.0" />
     </node> 
 
-    <node pkg="rviz" type="rviz" name="rviz" output="screen" if="$(arg gui)" args="-d $(find dagana_urdf)/rviz/dagana.rviz">
+    <node pkg="rviz2" exec="rviz2" name="rviz2" output="screen" if="$(var gui)" args="-d $(find-pkg-share dagana_urdf)/rviz/dagana.rviz">
     </node> 
 
-    <node if="$(arg visualize_inertia)" pkg="robot_inertia_publisher" type="robot_inertia_publisher" name="robot_inertia_publisher" output="screen" />
+    <node if="$(var visualize_inertia)" pkg="robot_inertia_publisher" exec="robot_inertia_publisher" name="robot_inertia_publisher" output="screen">
+        <param name="robot_description" value="$(var robot_description_content)" />
+    </node>
 
 </launch>
