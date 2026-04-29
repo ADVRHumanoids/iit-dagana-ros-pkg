@@ -5,6 +5,10 @@
 
 <xacro:macro name="dagana_gripper" params="name joint_type parent_link GAZEBO_URDF:=^|false *origin">
 
+    <material name="dagana_dark_grey_${name}">
+        <color rgba="0.2 0.2 0.2 1"/>
+    </material>
+
     <joint name="${name}_mount_joint" type="fixed">
         <xacro:insert_block name="origin"/>
         <parent link="${parent_link}"/>

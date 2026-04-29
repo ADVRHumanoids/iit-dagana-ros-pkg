@@ -20,9 +20,7 @@
 <xacro:property name="nicla_tof_visualize" value="$(arg nicla_tof_visualize)" />
 <xacro:property name="NICLA_IMU" value="$(arg nicla_imu)" />
 
-<material name="dagana_dark_grey">
-	<color rgba="0.2 0.2 0.2 1"/>
-</material>
+
 
 <xacro:property name="mmTom" value="1e-3" />
 <xacro:property name="mm2Tom2" value="1e-6" />
